@@ -1,0 +1,16 @@
+// Import the Firebase Cloud Messaging API
+import com.google.firebase.messaging.FirebaseMessaging;
+
+// Get an instance of the messaging service
+FirebaseMessaging messaging = FirebaseMessaging.getInstance();
+
+// Define the message to send
+Map<String, String> message = new HashMap<>();
+message.put("title", "New update available!");
+message.put("body", "Please update the app to the latest version.");
+
+// Send the message to all devices subscribed to the "updates" topic
+messaging.send(new Message.Builder()
+    .setTopic("updates")
+    .setData(message)
+    .build());
